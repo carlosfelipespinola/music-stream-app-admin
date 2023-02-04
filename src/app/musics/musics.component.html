@@ -1,0 +1,35 @@
+<mat-toolbar color="primary">
+
+    <span>Painel de administração - Músicas</span>
+    <span class="example-spacer"></span>
+    <button mat-icon-button class="example-icon">
+        <mat-icon>sign_out</mat-icon>
+    </button>
+</mat-toolbar>
+
+<div class="container">
+    <mat-card>
+        <mat-card-content fxLayout="column">
+            <p fxFlexAlign="end">
+                <button mat-raised-button color="primary" (click)="registerMusic('300ms', '150ms')">CADASTRAR NOVA MÚSICA</button>
+            </p>
+            <p>
+                <mat-list>
+                    <div mat-subheader>Músicas cadastradas</div>
+                    <div *ngFor="let music of musics" fxLayout="row" fxLayout="row" fxLayoutAlign="space-between center">
+                        <mat-list-item >
+                            <img matListItemAvatar [src]="music.photo">
+                            <div matListItemTitle>{{music.name}}</div>
+                            <div matListItemLine>{{music.authors}}</div>
+                        </mat-list-item>
+                        <button mat-icon-button (click)="deleteMusic('300ms', '150ms')">
+                            <mat-icon color="warn">delete</mat-icon>
+                        </button>
+                    </div>
+                    
+                </mat-list>
+            </p>
+                
+        </mat-card-content>
+    </mat-card>
+</div>

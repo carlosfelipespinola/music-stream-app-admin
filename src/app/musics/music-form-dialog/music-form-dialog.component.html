@@ -1,0 +1,28 @@
+<h1 mat-dialog-title>Cadastrar música</h1>
+<div mat-dialog-content>
+    <br>
+    <p>
+        <mat-form-field appearance="outline">
+            <mat-label>Nome</mat-label>
+            <input matInput placeholder="Placeholder" value="teste" name="name" type="text">
+            <mat-icon matSuffix>abc</mat-icon>
+        </mat-form-field>
+    </p>
+    <p>
+        <mat-form-field appearance="outline">
+            <mat-label>Autores</mat-label>
+            <input matInput placeholder="Placeholder" value="teste2" name="authors" type="text">
+            <mat-icon matSuffix>group</mat-icon>
+        </mat-form-field>
+    </p>
+    <p>
+        <mat-form-field appearance="outline">
+            <mat-label>Arquivo mp3</mat-label>
+            <ngx-mat-file-input formControlName="outline"></ngx-mat-file-input>
+            <mat-icon matSuffix>audio_file</mat-icon>
+        </mat-form-field>
+    </p>
+</div>
+<div mat-dialog-actions>
+    <button mat-raised-button mat-dialog-close cdkFocusInitial color="primary">CADASTRAR</button>
+</div>
