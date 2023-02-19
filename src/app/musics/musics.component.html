@@ -20,9 +20,9 @@
                         <mat-list-item >
                             <img matListItemAvatar [src]="music.photo">
                             <div matListItemTitle>{{music.name}}</div>
-                            <div matListItemLine>{{music.authors}}</div>
+                            <div matListItemLine>{{music.description}} | {{music.genre}} </div>
                         </mat-list-item>
-                        <button mat-icon-button (click)="deleteMusic('300ms', '150ms')">
+                        <button mat-icon-button (click)="deleteMusic('300ms', '150ms', music.id)">
                             <mat-icon color="warn">delete</mat-icon>
                         </button>
                     </div>

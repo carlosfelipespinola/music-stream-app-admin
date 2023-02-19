@@ -18,6 +18,9 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { DeleteMusicDialogComponent } from './musics/delete-music-dialog/delete-music-dialog.component';
 import { MusicFormDialogComponent } from './musics/music-form-dialog/music-form-dialog.component';
 import { FileInputConfig, MaterialFileInputModule, NGX_MAT_FILE_INPUT_CONFIG } from 'ngx-material-file-input';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
+import { HttpClientModule } from '@angular/common/http';
 
 export const config: FileInputConfig = {
   sizeUnit: 'Octet'
@@ -33,6 +36,8 @@ export const config: FileInputConfig = {
   ],
   imports: [
     BrowserModule,
+    CommonModule,
+    FormsModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     MatCardModule,
@@ -44,7 +49,8 @@ export const config: FileInputConfig = {
     FlexLayoutModule,
     MatListModule,
     MatDialogModule,
-    MaterialFileInputModule
+    MaterialFileInputModule,
+    HttpClientModule
   ],
   providers: [{ provide: NGX_MAT_FILE_INPUT_CONFIG, useValue: config }],
   bootstrap: [AppComponent]

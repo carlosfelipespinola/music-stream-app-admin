@@ -1,28 +1,47 @@
 <h1 mat-dialog-title>Cadastrar música</h1>
-<div mat-dialog-content>
-    <br>
-    <p>
-        <mat-form-field appearance="outline">
-            <mat-label>Nome</mat-label>
-            <input matInput placeholder="Placeholder" value="teste" name="name" type="text">
-            <mat-icon matSuffix>abc</mat-icon>
-        </mat-form-field>
-    </p>
-    <p>
-        <mat-form-field appearance="outline">
-            <mat-label>Autores</mat-label>
-            <input matInput placeholder="Placeholder" value="teste2" name="authors" type="text">
-            <mat-icon matSuffix>group</mat-icon>
-        </mat-form-field>
-    </p>
-    <p>
-        <mat-form-field appearance="outline">
-            <mat-label>Arquivo mp3</mat-label>
-            <ngx-mat-file-input formControlName="outline"></ngx-mat-file-input>
-            <mat-icon matSuffix>audio_file</mat-icon>
-        </mat-form-field>
-    </p>
-</div>
-<div mat-dialog-actions>
-    <button mat-raised-button mat-dialog-close cdkFocusInitial color="primary">CADASTRAR</button>
-</div>
+<form #musicForm="ngForm" (ngSubmit)="createMusic()">
+    <div mat-dialog-content>
+        <br>
+        <p>
+            <mat-form-field appearance="outline">
+                <mat-label>Nome</mat-label>
+                <input matInput placeholder="" [(ngModel)]="name" name="nome" type="text" required>
+                <mat-icon matSuffix>abc</mat-icon>
+            </mat-form-field>
+        </p>
+        <p>
+            <mat-form-field appearance="outline">
+                <mat-label>Descrição</mat-label>
+                <input matInput placeholder="" [(ngModel)]="description" name="description" type="text" required>
+                <mat-icon matSuffix>group</mat-icon>
+            </mat-form-field>
+        </p>
+        <p>
+            <mat-form-field appearance="outline">
+                <mat-label>Gênero</mat-label>
+                <input matInput placeholder="" [(ngModel)]="genre" name="genre" type="text" required>
+                <mat-icon matSuffix>speaker_group</mat-icon>
+            </mat-form-field>
+        </p>
+        <p>
+            <mat-form-field appearance="outline">
+                <mat-label>Imagem</mat-label>
+                <ngx-mat-file-input [(ngModel)]="imageFile" name="image" accept="image/*" required></ngx-mat-file-input>
+                <mat-icon matSuffix>image_file</mat-icon>
+            </mat-form-field>
+        </p>
+        <p>
+            <mat-form-field appearance="outline">
+                <mat-label>Arquivo mp3</mat-label>
+                <ngx-mat-file-input [(ngModel)]="audioFile" name="audio" accept="audio/*" required></ngx-mat-file-input>
+                <mat-icon matSuffix>audio_file</mat-icon>
+            </mat-form-field>
+        </p>
+    </div>
+    <div class="error-message" v-if="errorMessage">
+        {{errorMessage}}
+    </div>
+    <div mat-dialog-actions>
+        <button [disabled]="!musicForm.valid || shouldDisableButton" mat-raised-button color="primary" type="submit">CADASTRAR</button>
+    </div>
+</form>
