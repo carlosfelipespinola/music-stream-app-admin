@@ -50,6 +50,8 @@ export class CreateMusicException {}
 })
 export class MusicsServiceService {
 
+  private baseUrl: string = ""
+
   constructor(private readonly httpClient: HttpClient) {}
 
   async createMusic(data: CreateMusicInputData) {
@@ -60,11 +62,9 @@ export class MusicsServiceService {
     formData.append("genre", data.genre);
     formData.append("name", data.name);
     formData.append("description", data.description);
-    // let headers = new HttpHeaders();
-    // headers = headers.set('Content-Type', "application/x-www-form-urlencoded;charset=UTF-8");
     try {
-      const response = await firstValueFrom(this.httpClient.post<IMusicDto>("http://localhost:8080/musicas", formData))
-      return new MusicDto(response, "http://localhost:8080")
+      const response = await firstValueFrom(this.httpClient.post<IMusicDto>(`${this.baseUrl}/musicas`, formData))
+      return new MusicDto(response, this.baseUrl)
     } catch (error) {
       console.error(error)
       throw new CreateMusicException();
@@ -74,8 +74,8 @@ export class MusicsServiceService {
 
   async fetchMusics(): Promise<MusicDto[]> {
     try {
-      const response = await firstValueFrom(this.httpClient.get<IMusicDto[]>("http://localhost:8080/musicas"))
-      return response.map((x) => new MusicDto(x, "http://localhost:8080"))
+      const response = await firstValueFrom(this.httpClient.get<IMusicDto[]>(`${this.baseUrl}/musicas`))
+      return response.map((x) => new MusicDto(x, this.baseUrl))
     } catch (error) {
       console.error(error)
       throw new CreateMusicException();
